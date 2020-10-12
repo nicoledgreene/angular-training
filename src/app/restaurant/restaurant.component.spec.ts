@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { RestaurantComponent } from './restaurant.component';
+import { ImageUrlPipe } from '../image-url.pipe';
 
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -12,7 +13,7 @@ describe('RestaurantComponent', () => {
       imports: [
         RouterTestingModule
       ],
-      declarations: [ RestaurantComponent ]
+      declarations: [ RestaurantComponent, ImageUrlPipe ]
     })
     .compileComponents();
   }));
