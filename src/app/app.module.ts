@@ -8,16 +8,13 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
-import { RestaurantService } from './restaurant/restaurant.service';
-
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RestaurantComponent,
-    ImageUrlPipe,
-    RestaurantService
+    ImageUrlPipe
   ],
   imports: [
     BrowserModule,
