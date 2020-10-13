@@ -12,6 +12,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ImageUrlPipe } from './image-url.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantService } from './restaurant/restaurant.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 class MockRestaurantService {
   getRestaurants() {
@@ -184,7 +185,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        AppRoutingModule, HttpClientModule
+        AppRoutingModule, HttpClientModule, ReactiveFormsModule
       ],
       declarations: [
         AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
@@ -196,7 +197,8 @@ describe('AppComponent', () => {
       set: {
         providers: [
           { provide: RestaurantService, useClass: MockRestaurantService }
-        ]
+        ],
+        template: '<p> I am a fake restaurant component</p>'
       }
     })
     .compileComponents();

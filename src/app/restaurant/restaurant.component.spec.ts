@@ -1,10 +1,11 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
-import { ImageUrlPipe } from '../image-url.pipe';
 
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
+import { ImageUrlPipe } from '../image-url.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 class MockRestaurantService {
   getRestaurants() {
@@ -111,7 +112,8 @@ describe('RestaurantComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        ReactiveFormsModule
       ],
       providers: [{
         provide: RestaurantService,
@@ -288,4 +290,27 @@ describe('RestaurantComponent', () => {
     expect(loadingDiv).toBe(null);
   });
 
+
+  it('should have a form property with city and state keys', () => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.form.controls.state).toBeTruthy();
+    expect(fixture.componentInstance.form.controls.city).toBeTruthy();
+  });
+
+  it('should show a state dropdown', () => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let stateSelect = compiled.querySelector('select[formcontrolname="state"]');
+    expect(stateSelect).toBeTruthy();
+  });
+
+  it('should show a city dropdown', () => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let citySelect = compiled.querySelector('select[formcontrolname="city"]');
+    expect(citySelect).toBeTruthy();
+  });
 });
