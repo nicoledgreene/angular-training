@@ -13,6 +13,7 @@ import { ImageUrlPipe } from './image-url.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { RestaurantService } from './restaurant/restaurant.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DetailComponent } from './restaurant/detail/detail.component';
 
 class MockRestaurantService {
   getRestaurants() {
@@ -188,7 +189,7 @@ describe('AppComponent', () => {
         AppRoutingModule, HttpClientModule, ReactiveFormsModule
       ],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe, DetailComponent
       ],
       schemas: [
         NO_ERRORS_SCHEMA
@@ -239,6 +240,14 @@ describe('AppComponent', () => {
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  });
+
+  it('should render the DetailComponent with router navigates to "/restaurants/slug" path', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack']).then(() => {
+      expect(location.path()).toBe('/restaurants/crab-shack');
+      expect(compiled.querySelector('pmo-detail')).not.toBe(null);
     });
   });
 

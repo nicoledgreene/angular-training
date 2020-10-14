@@ -9,13 +9,15 @@ import { ImageUrlPipe } from './image-url.pipe';
 
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DetailComponent } from './restaurant/detail/detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     RestaurantComponent,
-    ImageUrlPipe
+    ImageUrlPipe,
+    DetailComponent
   ],
   imports: [
     BrowserModule,

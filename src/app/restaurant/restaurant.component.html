@@ -2,6 +2,8 @@
   <h2 class="page-header">Restaurants</h2>
   <form class="form" [formGroup]="form">
     <div class="form-group" *ngIf="states$ | async as states">
+    <!-- <div class="form-group"> -->
+      <!-- {{states | json}} -->
       <label>State</label>
       <select class="formControl" formControlName="state">
         <option value="" *ngIf="states.isPending">Loading...</option>

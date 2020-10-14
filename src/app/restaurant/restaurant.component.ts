@@ -19,24 +19,9 @@ export interface Data<dataType> {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  // public restaurants: Data<Restaurant> = {
-  //   value: [],
-  //   isPending: false
-  // }
-
-  // public states: Data<State> = {
-  //   isPending: false,
-  //   value: []
-  // };
-
   public states$: Observable<Data<State>>;
   public cities$: Observable<Data<City>>;
   public restaurant$: Observable<Data<Restaurant>>;
-
-  public cities: Data<City> = {
-    isPending: false,
-    value: []
-  }
 
   subscription: Subscription;
 
@@ -60,7 +45,7 @@ export class RestaurantComponent implements OnInit {
       tap((states) => {
         this.form.get('city').patchValue('');
         if(states.value.length) {
-          this.form.get('state')
+          this.form.get('state').enable();
         } else {
           this.form.get('state').disable();
         }
@@ -83,7 +68,7 @@ export class RestaurantComponent implements OnInit {
       }),
       tap((cities) => {
         if(cities.value.length) {
-          this.form.get('city')
+          this.form.get('city').enable();
         } else {
           this.form.get('city').disable();
         }
@@ -115,12 +100,12 @@ export class RestaurantComponent implements OnInit {
       state: {value: '', disabled: true}
     })
   }
-
-  ngOnDestroy() {
-    this.subscription && this.subscription.unsubscribe && this.subscription.unsubscribe();
-  }
-
 }
+//   ngOnDestroy() {
+//     // this.subscription && this.subscription.unsubscribe && this.subscription.unsubscribe();
+//   }
+
+// }
 
   // onChanges() {
   //   let state: string;
