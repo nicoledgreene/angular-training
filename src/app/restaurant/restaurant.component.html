@@ -1,7 +1,7 @@
 <div class="restaurants">
   <h2 class="page-header">Restaurants</h2>
   <form class="form" [formGroup]="form">
-    <div class="form-group">
+    <div class="form-group" *ngIf="states$ | async as states">
       <label>State</label>
       <select class="formControl" formControlName="state">
         <option value="" *ngIf="states.isPending">Loading...</option>
@@ -11,7 +11,7 @@
         </ng-container>
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group" *ngIf="cities$ | async as cities">
       <label>City</label>
       <select class="formControl" formControlName="city">
         <option value="" *ngIf="cities.isPending">Loading...</option>
@@ -23,6 +23,7 @@
     </div>
   </form>
 
+  <ng-container *ngIf="restaurant$ | async as restaurants">
   <div class="restaurant loading" *ngIf="restaurants.isPending"></div>
   <ng-container *ngIf="restaurants.value.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants.value">
@@ -45,5 +46,6 @@
       </a>
       <br />
     </div>
+  </ng-container>
   </ng-container>
 </div>

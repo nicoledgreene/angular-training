@@ -32,6 +32,10 @@ export class RestaurantService {
     return this.httpClient.get<ResponseData<Restaurant>>(`${environment.apiUrl}/restaurants`, {params});
   }
 
+  public getRestaurant(slug: string): Observable<Restaurant> {
+    return this.httpClient.get<Restaurant>(`${environment.apiUrl}/restaurants/${slug}`);
+  }
+
   public getStates(): Observable<ResponseData<State>> {
     return this.httpClient.get<ResponseData<State>>(`${environment.apiUrl}/states`);
   }
