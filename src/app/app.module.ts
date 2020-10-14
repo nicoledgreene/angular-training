@@ -10,6 +10,8 @@ import { ImageUrlPipe } from './image-url.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @NgModule({
   declarations: [
@@ -17,13 +19,15 @@ import { DetailComponent } from './restaurant/detail/detail.component';
     HomeComponent,
     RestaurantComponent,
     ImageUrlPipe,
-    DetailComponent
+    DetailComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabsModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

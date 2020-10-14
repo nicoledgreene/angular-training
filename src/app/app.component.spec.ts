@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RestaurantService } from './restaurant/restaurant.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
 
 class MockRestaurantService {
   getRestaurants() {
@@ -189,7 +190,7 @@ describe('AppComponent', () => {
         AppRoutingModule, HttpClientModule, ReactiveFormsModule
       ],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe, DetailComponent
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe, DetailComponent, OrderComponent
       ],
       schemas: [
         NO_ERRORS_SCHEMA
@@ -248,6 +249,14 @@ describe('AppComponent', () => {
     router.navigate(['restaurants/crab-shack']).then(() => {
       expect(location.path()).toBe('/restaurants/crab-shack');
       expect(compiled.querySelector('pmo-detail')).not.toBe(null);
+    });
+  });
+
+  it('should render the OrderComponent with router navigates to "/restaurants/slug/order" path', () => {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack/order']).then(() => {
+      expect(location.path()).toBe('/restaurants/crab-shack/order');
+      expect(compiled.querySelector('pmo-order')).not.toBe(null);
     });
   });
 
